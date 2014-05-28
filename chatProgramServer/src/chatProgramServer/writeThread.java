@@ -43,12 +43,11 @@ public class writeThread implements Runnable
 		}
 		
 		while(true)
-		{
-			
-			
+		{	
 			try
 			{
-				writer.write("test");
+				writer.write(keyboard.readLine());
+				writer.newLine();
 				writer.flush();
 			}
 			catch (Exception e)
