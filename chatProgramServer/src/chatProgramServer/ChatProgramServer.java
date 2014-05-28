@@ -34,17 +34,21 @@ public class ChatProgramServer
 			System.exit(2);
 		}
 		
-		try
+		while(true)
 		{
-			newSocket = connection.accept();
+			try
+			{
+				newSocket = connection.accept();
+			}
+			catch (Exception e)
+			{
+				System.out.println("Failed to accept new connection.");
+				System.exit(2);
+			}
+			
+			//Begins the input and output threads.
+			new Thread(new writeThread(newSocket)).start();
+			new Thread(new readThread(newSocket)).start();
 		}
-		catch (Exception e)
-		{
-			System.out.println("Failed to accept new connection.");
-			System.exit(2);
-		}
-		
-		System.out.println("I haz connection.");
 	}
-
 }
