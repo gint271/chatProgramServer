@@ -1,20 +1,50 @@
-/**
+/*
+ * Author: Ryan Milem
  * 
+ * Programming Assignment 5
+ * 
+ * 5/28/2014
+ * 
+ * This class will set up the socket and wait for a connection from ChatProgramClient.  It will then 
+ * start two threads, one for input and one for output.
  */
+
 package chatProgramServer;
 
-/**
- * @author r.milem
- *
- */
-public class ChatProgramServer {
+import java.net.ServerSocket;
+import java.net.Socket;
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+public class ChatProgramServer 
+{
+
+	
+	public static void main(String[] args) 
+	{
+		ServerSocket connection = null;
+		Socket newSocket = null;
+		
+		try
+		{
+			connection = new ServerSocket(1234);
+		}
+		catch (Exception e)
+		{
+			System.out.println("Failed to make server socket.");
+			System.exit(2);
+		}
+		
+		try
+		{
+			newSocket = connection.accept();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Failed to accept new connection.");
+			System.exit(2);
+		}
+		
+		System.out.println("I haz connection.");
 	}
 
 }
