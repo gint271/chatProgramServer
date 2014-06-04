@@ -36,6 +36,16 @@ public class ChatProgramServer
 		
 		while(true)
 		{
+			
+			try 
+			{
+				ChatFrame frame = new ChatFrame();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+			
 			try
 			{
 				newSocket = connection.accept();
@@ -46,9 +56,11 @@ public class ChatProgramServer
 				System.exit(2);
 			}
 			
+			
+			
 			//Begins the input and output threads.
-			new Thread(new writeThread(newSocket)).start();
-			new Thread(new readThread(newSocket)).start();
+//			new Thread(new writeThread(newSocket)).start();
+//			new Thread(new readThread(newSocket)).start();
 		}
 	}
 }
