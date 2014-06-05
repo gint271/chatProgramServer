@@ -21,7 +21,8 @@ public class ChatFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	HistoryPanel panel;
+	JScrollPane scrollPane;
+	JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -38,9 +39,12 @@ public class ChatFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		panel = new HistoryPanel();
-		panel.setBounds(5, 0, 403, 226);
-		contentPane.add(panel);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(5, 11, 419, 219);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 		
 		textField = new JTextField();
 		textField.setBounds(5, 237, 276, 20);
@@ -51,7 +55,7 @@ public class ChatFrame extends JFrame {
 				if(arg0.getKeyChar() == '\n')
 				{
 					System.out.println(textField.getText() + " was entered.");
-					panel.addLine(textField.getText());
+					textArea.setText(textArea.getText() + textField.getText() + "\n");
 					textField.setText("");
 					
 				}
@@ -59,6 +63,8 @@ public class ChatFrame extends JFrame {
 		});
 		contentPane.add(textField);
 		textField.setColumns(10);
+		
+		
 		
 		
 		
