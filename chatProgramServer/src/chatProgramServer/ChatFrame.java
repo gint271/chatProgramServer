@@ -88,13 +88,11 @@ public class ChatFrame extends JFrame {
 			}
 		});
 		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		
-		
-		
-		
-		
-		
+		textField.setColumns(10);	
+	}
+	
+	void write(String message)
+	{
+		textArea.setText(textArea.getText() + message + "\n");
 	}
 }

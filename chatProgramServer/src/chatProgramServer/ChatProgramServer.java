@@ -59,7 +59,7 @@ public class ChatProgramServer
 			
 			//Begins the input and output threads.
 			//new Thread(new writeThread(newSocket, frame)).start();
-			//new Thread(new readThread(newSocket, frame)).start();
+			new Thread(new readThread(newSocket, frame)).start();
 		}
 	}
 }
