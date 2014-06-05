@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -23,6 +26,7 @@ public class ChatFrame extends JFrame {
 	private JTextField textField;
 	JScrollPane scrollPane;
 	JTextArea textArea;
+	BufferedWriter chatWrite;
 
 	/**
 	 * Launch the application.
@@ -31,7 +35,18 @@ public class ChatFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ChatFrame() {
+	public ChatFrame(Socket chatSocket) {
+		
+		try
+		{
+			chatWrite = new BufferedWriter(new OutputStreamWriter(chatSocket.getOutputStream()));
+		}
+		catch (Exception e)
+		{
+			System.out.println("Failed to make socket writer.");
+			System.exit(2);
+		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -56,6 +71,17 @@ public class ChatFrame extends JFrame {
 				{
 					System.out.println(textField.getText() + " was entered.");
 					textArea.setText(textArea.getText() + textField.getText() + "\n");
+					try
+					{
+						chatWrite.write(textField.getText());
+						chatWrite.newLine();
+						chatWrite.flush();
+					}
+					catch (Exception e)
+					{
+						System.out.println("Failed to write to socket.");
+					}
+					
 					textField.setText("");
 					
 				}

@@ -6,7 +6,7 @@ public class readThread implements Runnable
 {
 	private Socket connection;
 	
-	readThread(Socket passConnection)
+	readThread(Socket passConnection, ChatFrame frame)
 	{
 		connection = passConnection;
 	}
