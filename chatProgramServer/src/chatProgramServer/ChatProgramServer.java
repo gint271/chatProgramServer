@@ -45,7 +45,7 @@ public class ChatProgramServer
 		
 		try
 		{
-			connection = new ServerSocket(1234);
+			connection = new ServerSocket(1201);
 		}
 		catch (Exception e)
 		{
