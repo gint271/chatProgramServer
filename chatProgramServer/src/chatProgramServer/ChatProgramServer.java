@@ -11,6 +11,8 @@
 
 package chatProgramServer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -24,6 +26,22 @@ public class ChatProgramServer
 		ServerSocket connection = null;
 		Socket newSocket = null;
 		ChatFrame frame = null;
+		BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+		String username = null;
+		
+		System.out.println("What is your username?" );
+		try
+		{
+			username = keyboard.readLine();
+			//TODO: Make sure username is valid.
+		}
+		catch (Exception e)
+		{
+			System.out.println("Failed to read username.");
+			System.exit(2);
+		}
+		
+		
 		
 		try
 		{
@@ -49,7 +67,7 @@ public class ChatProgramServer
 			
 			try 
 			{
-				frame = new ChatFrame(newSocket);
+				frame = new ChatFrame(newSocket, username);
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();

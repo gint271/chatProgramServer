@@ -27,6 +27,7 @@ public class ChatFrame extends JFrame {
 	JScrollPane scrollPane;
 	JTextArea textArea;
 	BufferedWriter chatWrite;
+	String username;
 
 	/**
 	 * Launch the application.
@@ -35,7 +36,8 @@ public class ChatFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ChatFrame(Socket chatSocket) {
+	public ChatFrame(Socket chatSocket, String passUsername) {
+		username = passUsername;
 		
 		try
 		{
@@ -70,10 +72,10 @@ public class ChatFrame extends JFrame {
 				if(arg0.getKeyChar() == '\n')
 				{
 					System.out.println(textField.getText() + " was entered.");
-					textArea.setText(textArea.getText() + textField.getText() + "\n");
+					textArea.setText(textArea.getText() + "You: " + textField.getText() + "\n");
 					try
 					{
-						chatWrite.write(textField.getText());
+						chatWrite.write(username + ": " + textField.getText());
 						chatWrite.newLine();
 						chatWrite.flush();
 					}
