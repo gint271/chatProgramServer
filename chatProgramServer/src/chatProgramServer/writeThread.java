@@ -10,7 +10,7 @@ public class writeThread implements Runnable
 {
 	private Socket connection;
 	
-	writeThread(Socket passConnection)
+	writeThread(Socket passConnection, ChatFrame frame)
 	{
 		connection = passConnection;
 	}
