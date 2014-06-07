@@ -33,7 +33,6 @@ public class ChatProgramServer
 		try
 		{
 			username = keyboard.readLine();
-			//TODO: Make sure username is valid.
 		}
 		catch (Exception e)
 		{

@@ -30,18 +30,20 @@ public class readThread implements Runnable
 	{
 		BufferedReader reader = null;
 		String readLine;
+		Boolean readingFine = true;
 		
 		try
 		{
-			while(null != (readLine = chatReader.readLine()))
+			while(null != (readLine = chatReader.readLine()) && readingFine)
 			{
 				frame.write(readLine);
 			}
 		}
 		catch (Exception e)
 		{
-			System.out.println("Failed to read line from socket.");
-			System.exit(2);
+			System.out.println("Failed to read line from socket.  Chat most likely closed.");
+			readingFine = false;
+			frame.setVisible(false);
 		}
 	}
 }
